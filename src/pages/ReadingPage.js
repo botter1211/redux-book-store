@@ -59,7 +59,7 @@ const ReadingPage = () => {
           justifyContent="space-around"
           flexWrap={"wrap"}
         >
-          {readingList.map((book) => (
+          {readingList?.map((book) => (
             <Card
               key={book.id}
               sx={{

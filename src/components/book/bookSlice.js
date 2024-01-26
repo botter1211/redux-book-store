@@ -4,7 +4,7 @@ import { fetchBooks } from "./bookAPI";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  book: [],
+  books: [],
   readingList: [],
   bookDetail: null,
   status: null,
@@ -13,7 +13,7 @@ const initialState = {
 export const addToReadingList = createAsyncThunk(
   "book/addToReadingList",
   async (book) => {
-    const response = await api.post(`/favorite`, book);
+    const response = await api.post(`/favorites`, book);
     return response.data;
   }
 );
@@ -21,16 +21,16 @@ export const addToReadingList = createAsyncThunk(
 export const getReadingList = createAsyncThunk(
   "book/getReadingList",
   async () => {
-    const response = await api.get(`/favorite`);
-    return response.date;
+    const response = await api.get(`/favorites`);
+    return response.data;
   }
 );
 
 export const removeBook = createAsyncThunk(
   "book/removeBook",
   async (removedBookId) => {
-    const response = await api.delete(`/favorite${removedBookId}`);
-    return response.date;
+    const response = await api.delete(`/favorites/${removedBookId}`);
+    return response.data;
   }
 );
 
@@ -57,7 +57,7 @@ export const bookSlice = createSlice({
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = null;
-        state.book = action.payload;
+        state.books = action.payload;
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.status = "failed";

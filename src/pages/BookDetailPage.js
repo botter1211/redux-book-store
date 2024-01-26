@@ -66,7 +66,8 @@ const BookDetailPage = () => {
                 <Button
                   variant="outlined"
                   sx={{ width: "fit-content" }}
-                  onClick={() => addToReadingList(bookDetail)}
+                  children={"Add to Reading List"}
+                  onClick={() => dispatch(addToReadingList(bookDetail))}
                 >
                   Add to Reading List
                 </Button>
